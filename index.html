@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategori Usia</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #dbe7d5; /* Warna hijau muda */
+            color: #333; /* Warna teks hitam */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8); /* Transparansi background */
+            padding: 30px;
+            border: 5px solid #4c6b5b; /* Warna hijau tua */
+            border-radius: 15px;
+            box-shadow: 10px 10px 30px rgba(76, 107, 91, 0.5); /* Efek bayangan */
+            max-width: 600px; /* Lebar maksimum kontainer */
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-family: 'Great Vibes', cursive; /* Font dengan sentuhan mewah */
+            color: #1a237e; /* Warna biru tua */
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: #4c6b5b; /* Warna hijau tua */
+        }
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            font-size: 1em;
+            width: calc(100% - 22px); /* Lebar input dikurangi padding */
+            margin-bottom: 10px;
+            border: 1px solid #4c6b5b; /* Warna border hijau tua */
+            border-radius: 5px;
+            background-color: #f2ede9; /* Warna krem muda */
+            color: #333; /* Warna teks hitam */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            background-color: #4c6b5b; /* Warna hijau tua */
+            color: #fff; /* Warna teks putih */
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #1a4731; /* Warna hijau tua yang lebih gelap saat hover */
+        }
+        .result {
+            margin-top: 30px;
+            font-size: 1.2em;
+            padding: 20px;
+            border-top: 2px solid #4c6b5b; /* Garis atas warna hijau tua */
+            background-color: #f2ede9; /* Warna krem muda */
+            color: #333; /* Warna teks hitam */
+            border-radius: 5px;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #4c6b5b; /* Warna hijau tua */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kategori Usia</h1>
+        <div class="input-group">
+            <label for="name">Nama</label>
+            <input type="text" id="name" placeholder="Masukkan nama">
+        </div>
+        <div class="input-group">
+            <label for="age">Umur</label>
+            <input type="number" id="age" placeholder="Masukkan umur">
+        </div>
+        <button onclick="categorizeAge()">Kategorikan</button>
+        <div class="result" id="result"></div>
+        <footer>&copy; 2024 Abdul Aziz</footer>
+    </div>
+
+    <script>
+        function categorizeAge() {
+            const name = document.getElementById('name').value;
+            const age = parseInt(document.getElementById('age').value);
+            const resultDiv = document.getElementById('result');
+
+            if (!name || !age || isNaN(age)) {
+                resultDiv.innerHTML = `<div class="error">Error: Pastikan nama dan umur diisi dengan benar.</div>`;
+                return;
+            }
+
+            let category = '';
+            if (age < 2) {
+                category = 'Bayi';
+            } else if (age >= 2 && age < 6) {
+                category = 'Balita';
+            } else if (age >= 6 && age < 12) {
+                category = 'Anak-anak';
+            } else if (age >= 12 && age < 18) {
+                category = 'Remaja';
+            } else if (age >= 18 && age < 60) {
+                category = 'Dewasa';
+            } else if (age >= 60) {
+                category = 'Lanjut Usia';
+            } else {
+                category = 'Umur tidak valid';
+            }
+
+            resultDiv.innerHTML = `
+                <strong>Nama:</strong> ${name} <br>
+                <strong>Umur:</strong> ${age} tahun <br>
+                <strong>Kategori Usia:</strong> ${category}
+            `;
+        }
+    </script>
+</body>
+</html>
